@@ -1,7 +1,11 @@
-from django.urls import path
+from django.urls import path, include
 from core import views
+from rest_framework import routers
+# from core.views import api_detail_empresa_view
 
-urlpatterns = [
-    path('empresas/', views.snippet_list),
-    path('empresas/<int:pk>/', views.snippet_detail),
-]
+# app_name= "empresas"
+
+# urlpatterns = [
+#     path('', api_detail_empresa_view, name="empresas"),
+    # path('admin', admin.site.urls),
+# ]
