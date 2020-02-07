@@ -52,8 +52,16 @@ class EmpresaViewSet(viewsets.ModelViewSet):
             serializer_class = EmpresaSerializer(empresa)
             return Response(serializer_class.data)
 
-        def create(self, request):
-            serializer = EmpresaSerializer(data = request.data)
-            if serializer.is_valid():
-                serializer.save()
+        def  create(self,request):
+          serializer = EmpresaSerializer(data = request.data)
+          if serializer.is_valid():
+              serializer.save()
+              return Response({ 'data':serializer.data})   
+          else:
+              return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
                  
+        def destroy(self, request,pk=None):
+          queryset = Empresa.objects.all()
+          empresa = get_object_or_404(queryset, pk=pk)
+          empresa.delete()
+          return Response({ 'data':serializer.data})             
